@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Head count </title>
+</head>
+<body>
+    <h1>Head count</h1>
+    
+    <form action="/guardar" method="post">
+        {% for i in range(1, 11) %}
+            <label for="opcion_{{ i }}">Opción {{ i }}:</label>
+            <select id="opcion_{{ i }}" name="opcion_{{ i }}">
+                <option value="si">Sí</option>
+                <option value="no">No</option>
+            </select>
+            
+            <label for="nombre_{{ i }}">Nombre:</label>
+            <input type="text" id="nombre_{{ i }}" name="nombre_{{ i }}" required>
+            <br><br>
+        {% endfor %}
+        
+        <button type="submit">Guardar</button>
+    </form>
+</body>
+</html>
+
+
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <div id="flash-messages">
+      {% for message in messages %}
+        <div class="flash-message flash-success">{{ message }}</div>
+      {% endfor %}
+    </div>
+  {% endif %}
+{% endwith %}
